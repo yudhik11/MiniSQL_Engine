@@ -20,10 +20,17 @@ def get_operator_fn(op):
         '!=' : operator.ne,
         }[op]
 
+def str2intf(num):
+    try:
+        return int(num)
+    except:
+        return float(num)
+
 def check_type(val):
-    if val.isdigit():
-        return int(val)
-    return "str"
+    try:
+        return str2intf(val)
+    except:
+        return "str"
 
 def swap(a, b):
     return b,a
@@ -205,7 +212,6 @@ def conditioned_table(table_cols, final_table, cond1, cond2, add_type = None):
     
     left_cond1, sign_cond1, right_cond1 = cond_split(cond1)
     type_lhsc1, type_rhsc1 = check_type(left_cond1), check_type(right_cond1)
-    
     left_cond2, sign_cond2, right_cond2 = cond_split(cond2)
     type_lhsc2, type_rhsc2 = check_type(left_cond2), check_type(right_cond2)
     # print(left_cond1, right_cond2, left_cond1, right_cond2)
